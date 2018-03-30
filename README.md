@@ -56,6 +56,42 @@ _Text below copied from the pull request [ninja-build/ninja#1140](https://github
 > http://make.mad-scientist.net/papers/jobserver-implementation/
 >
 
+### generating the binaries
+
+First, create the release tag:
+
+```
+git tag -s -m "v1.8.2-jobserver" v1.8.2-jobserver  topic-issue-1139-squashed
+```
+
+Then, build the packages and upload them as release assets:
+
+* Linux:
+
+```
+mkdir /tmp/scratch && cd $_
+git clone git://github.com/dockbuild/ninja-jobserver -b topic-issue-1139-squashed
+cd ninja-jobserver
+
+docker run --rm dockbuild/centos5-devtoolset2-gcc4 > ./dockbuild-centos5-devtoolset2-gcc4
+chmod +x ./dockbuild-centos5-devtoolset2-gcc4
+
+./dockbuild-centos5-devtoolset2-gcc4 ./configure.py --bootstrap
+./dockbuild-centos5-devtoolset2-gcc4 strip ninja
+
+zip ninja-jobserver-linux.zip ninja
+```
+
+* macOS:
+
+*To be done*
+
+* Windows:
+
+*To be done*
+
+
+
 ### acknowledments
 
 Thanks you to the ninja-build developers for making such an awesome tool. See [list of contributors](https://github.com/ninja-build/ninja/graphs/contributors).
