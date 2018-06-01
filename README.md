@@ -1,6 +1,8 @@
 ninja-jobserver
 ===============
 
+## As of June 1st 2018, this is project is obsolete. Consider using binaries available at https://github.com/Kitware/ninja/releases
+
 This **ONLY** purpose of this project is to distribute a version
 of [ninja](https://ninja-build.org/) with GNU make jobserver client support.
 
